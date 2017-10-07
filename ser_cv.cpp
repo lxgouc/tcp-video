@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
     Socket ser;
-    ser.CreateAddr("127.0.0.1",8888);
+    ser.CreateAddr("192.168.1.107",8888);
     ser.Bind();
     ser.Listen();
     VideoCapture capture(0);
@@ -25,9 +25,10 @@ int main()
         cout << "one client connected : " << str << std::endl;
         Mat frame;
         SockMat transmat;
+        if (!capture.isOpened()) 
+            return 0;
         while(1)
-        {
-            if (!capture.isOpened()) return 0;
+        {      
             capture >> frame;
             transmat.Transmit(frame,clifd);
         }
