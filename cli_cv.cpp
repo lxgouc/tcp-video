@@ -7,7 +7,7 @@ using namespace cv;
 int main()
 {
     Socket cli;
-    cli.CreateAddr("127.0.0.1",8888);
+    cli.CreateAddr("192.168.0.106",8888);
     cli.Connect();
     int recvfd = cli.Getfd();
     char buf[3];
@@ -26,16 +26,8 @@ int main()
         {
             
            image = recvmat.Receive(recvfd);
-            //if(i == 23)
-            //{
-            //    for(int j = 0;j < i;++j)
-            //    {    
-                    imshow("test",image);
-                    waitKey(11);
-                //}
-            //    i == -1;
-           // }
-           // i++;
+           imshow("test",image);
+           waitKey(11);
         }
     }
     return 0;
